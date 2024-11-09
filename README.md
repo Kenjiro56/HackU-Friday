@@ -1,4 +1,4 @@
-# KansaHack-Friday
+# HackU-Friday
 
 ### 起動コマンド
 
