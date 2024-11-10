@@ -21,6 +21,10 @@ const buckerListView: React.FC = () => {
     };
     fetchBucketItems();
   }, []);
+  const handleAddClick = () => {
+    // 追加ボタンがクリックされたときの処理をここに書きます
+    console.log("プラスボタンがクリックされました");
+  };
     return (
         <div>
           {loading ? (
@@ -32,6 +36,25 @@ const buckerListView: React.FC = () => {
               ))}
             </ul>
           )}
+
+          <button
+                  onClick={handleAddClick}
+                  style={{
+                    position: 'fixed',
+                    right: '20px',
+                    bottom: '20px',
+                    width: '50px',
+                    height: '50px',
+                    borderRadius: '50%',
+                    backgroundColor: '#4CAF50',
+                    color: 'white',
+                    fontSize: '24px',
+                    border: 'none',
+                    cursor: 'pointer',
+                  }}
+                >
+                  +
+                </button>
         </div>
     );
 };
