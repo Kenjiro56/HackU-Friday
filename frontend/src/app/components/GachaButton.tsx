@@ -13,8 +13,8 @@ const GachaButton: React.FC<GachaButtonProps> = ({ mixMode, timeCategoryIndex })
   const handleGachaButtonClicked = async () => {
   try{
     const fetchUrl = mixMode
-      ? `http://localhost:8080/popSelect/${timeCategoryIndex}/all`
-      : `http://localhost:8080/popSelect/${timeCategoryIndex}/${userId}`
+      ? `http://localhost:8080/bucketls/popSelect/${timeCategoryIndex}/all`
+      : `http://localhost:8080/bucketls/popSelect/${timeCategoryIndex}/${userId}`
 
     const response = await fetch(fetchUrl);
     if (!response.ok) {
@@ -24,7 +24,12 @@ const GachaButton: React.FC<GachaButtonProps> = ({ mixMode, timeCategoryIndex })
 
     router.push({
       pathname: '/resultView',
-      query: { data: JSON.stringify(data) }
+      query: {
+        id: data.id,
+        bucket_title: data.bucket_title,
+        time_id: data.time_id,
+        loop_flag: data.loop_flag,
+      }
     });
   }catch(e){
     console.error(e);
