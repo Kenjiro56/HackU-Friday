@@ -1,26 +1,24 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./style.css"; //全画面表示
+import { Canvas, useFrame } from "@react-three/fiber";
+import { Mesh } from "three";
+import { OrbitControls, Sampler } from "@react-three/drei"; //マウスイベント利用
+import RotatingBox from "./components/Box";
+import GashaponMachine from "./components/GashaponMachine";
+import GashaponCapsule from "./components/GashaponCapsule";
 
-function App() {
+const App: React.FC = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div id="canvas-container">
+      <Canvas camera={{ position: [0, 0, 3] }}>
+        <ambientLight intensity={1} />
+        <pointLight position={[10, 10, 10]} />
+        <OrbitControls />
+        <GashaponMachine />
+        <GashaponCapsule />
+      </Canvas>
     </div>
   );
-}
+};
 
 export default App;
