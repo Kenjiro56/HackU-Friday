@@ -30,11 +30,24 @@ const GachaHome: React.FC = () => {
 
   return (
     <div>
-      <label>
+      {/* <label>
         <input type="checkbox" checked={isMixMode} onChange={handleToggle} />
         ごちゃ混ぜモード
-      </label>
-      <button onClick={handleGachaClick}>ガチャを回す</button>
+      </label> */}
+
+      <div className="flex items-center mb-4">
+        <span className="mr-2 text-lg">ごちゃ混ぜモード</span>
+        <input type="checkbox" className="toggle-checkbox hidden" id="toggle" checked={isMixMode} onChange={handleToggle} />
+        <label htmlFor="toggle"
+          className={`toggle-label block w-12 h-6 rounded-full cursor-pointer transition-colors ${
+            isMixMode ? 'bg-black' : 'bg-gray-300'
+          }`}>
+          <span className={`dot absolute w-6 h-6 bg-white rounded-full transition-transform ${
+              isMixMode ? 'translate-x-6' : 'translate-x-0'
+          }`}></span>
+        </label>
+      </div>
+      <button onClick={handleGachaClick} className="mt-auto py-3 px-6 bg-black text-white rounded-full shadow-lg">ガチャを回す</button>
       {isModalOpen && <Modal data={apiResponse} onClose={() => setIsModalOpen(false)} />}
     </div>
   );
