@@ -1,10 +1,12 @@
 'use client';
 import React, { useState, useEffect } from 'react';
+import NewBucketModal from './components/NewBucketModal';
 
 
 const buckerListView: React.FC = () => {
   const [bucketItems, setBucketItems] = useState<any[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
   const userId = 1; //あとで変更できるようにする
   useEffect(() => {
@@ -23,7 +25,11 @@ const buckerListView: React.FC = () => {
   }, []);
   const handleAddClick = () => {
     // 追加ボタンがクリックされたときの処理をここに書きます
-    console.log("プラスボタンがクリックされました");
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
   };
     return (
         <div>
@@ -55,6 +61,9 @@ const buckerListView: React.FC = () => {
                 >
                   +
                 </button>
+                {isModalOpen && (
+                  <NewBucketModal onClose={handleCloseModal} />
+                )}
         </div>
     );
 };
