@@ -1,7 +1,8 @@
 package main
 
 import (
-	"HackU-Friday/routes"
+	"hacku-friday/routes"
+
 	"fmt"
 
 	"github.com/gin-gonic/gin"

@@ -1,7 +1,7 @@
 package routes
 
 import (
-	"HackU-Friday/controller"
+	"hacku-friday/controller"
 
 	"github.com/gin-gonic/gin"
 )
