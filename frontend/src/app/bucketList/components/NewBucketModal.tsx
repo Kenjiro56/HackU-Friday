@@ -95,3 +95,5 @@ const NewBucketModal: React.FC<ModalProps> = ({ onClose }) => {
   );
 
 };
+
+export default NewBucketModal;
