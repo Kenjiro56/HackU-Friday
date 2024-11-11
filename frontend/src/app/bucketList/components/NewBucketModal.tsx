@@ -45,17 +45,10 @@ const NewBucketModal: React.FC<ModalProps> = ({ onClose }) => {
     }
   };
 
-  const handleDescriptionChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    const value = e.target.value;
-    if (value.length <= 255) {
-      setDescription(value);
-    }
-  };
-
   return (
     <div className="modal">
       <div className="modal-content">
-        <button onClick={onClose}>閉じる</button>
+        <button onClick={onClose}>←</button>
 
         {/* 時間カテゴリボタン */}
         <div>
@@ -74,19 +67,18 @@ const NewBucketModal: React.FC<ModalProps> = ({ onClose }) => {
         <input
           type="text"
           placeholder="やりたいこと"
-          value={task}
-          onChange={(e) => setTask(e.target.value)}
+          value={bucketTitle}
+          onChange={(e) => setBucketTitle(e.target.value)}
           required
         />
 
         {/* 詳細フォーム */}
         <textarea
-          placeholder="詳細 (任意)"
-          value={details}
-          onChange={handleDescriptionChange}
+          placeholder="メモ"
+          value={description}
           maxLength={255}
+          onChange={(e) => setDescription(e.target.value)}
         ></textarea>
-        <p>{255 - details.length} 文字残り</p>
 
         {/* 決定ボタン */}
         <button onClick={handleSubmit}>決定</button>
