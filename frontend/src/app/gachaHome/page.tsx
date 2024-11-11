@@ -2,6 +2,8 @@
 
 import React, { useState } from 'react';
 import Modal from './components/Modal';
+import GachaImage from '../../assets/gachaImage.svg';
+import Image from 'next/image';
 
 const GachaHome: React.FC = () => {
   const [isMixMode, setIsMixMode] = useState(false);
@@ -29,8 +31,24 @@ const GachaHome: React.FC = () => {
   };
 
   return (
-    <div>
-      <div className="flex items-center mb-4">
+    <div flex flex-col items-center min-h-screen bg-blue-300>
+        {/* ガチャスクロール部分 */}
+        <div className="overflow-x-auto py-4">
+          <div className="flex space-x-4 px-4 w-full max-w-xs mx-auto">
+            <div className="min-w-full">
+              <Image src={GachaImage} alt="ガチャ1" width={300} height={400} className="rounded-lg border-2 border-black" />
+            </div>
+            <div className="min-w-full">
+              <Image src={GachaImage} alt="ガチャ2" width={300} height={400} className="rounded-lg border-2 border-black" />
+            </div>
+            <div className="min-w-full">
+              <Image src={GachaImage} alt="ガチャ3" width={300} height={400} className="rounded-lg border-2 border-black" />
+            </div>
+          </div>
+        </div>
+
+        {/* ごちゃ混ぜモード部分 */}
+        <div className="flex items-center space-x-2 mt-4 justify-center">
         <button
             className="flex items-center justify-center w-6 h-6 rounded-full bg-white text-xs text-black mr-2 border border-black"
             aria-label="ごちゃ混ぜモードの説明"
@@ -38,7 +56,7 @@ const GachaHome: React.FC = () => {
           ?
         </button>
 
-        <span className="mr-2 text-lg">ごちゃ混ぜモード</span>
+        <span className="text-lg">ごちゃ混ぜモード</span>
         <input type="checkbox" className="toggle-checkbox hidden" id="toggle" checked={isMixMode} onChange={handleToggle} />
         <label htmlFor="toggle"
           className={`toggle-label block w-12 h-6 rounded-full cursor-pointer transition-colors ${
@@ -49,6 +67,8 @@ const GachaHome: React.FC = () => {
           }`}></span>
         </label>
       </div>
+
+      {/* ガチャを回すボタン部分 */}
       <button onClick={handleGachaClick} className="mt-4 py-3 px-6 bg-black text-white rounded-full shadow-lg mx-auto block">ガチャを回す</button>
       {isModalOpen && <Modal data={apiResponse} onClose={() => setIsModalOpen(false)} />}
     </div>
