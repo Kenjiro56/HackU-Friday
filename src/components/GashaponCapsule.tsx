@@ -69,7 +69,7 @@ export default function GashaponCapsule() {
           rotation={[0, 0, Math.PI / 2]}
         >
           <sphereGeometry args={[0.3, 32, 32, Math.PI / 2, Math.PI]} />
-          <meshStandardMaterial color="blue" />
+          <meshStandardMaterial color="#FCC605" />
         </animated.mesh>
       </group>
 
@@ -80,7 +80,7 @@ export default function GashaponCapsule() {
           rotation={[0, 0, -Math.PI / 2]}
         >
           <sphereGeometry args={[0.3, 32, 32, Math.PI / 2, Math.PI]} />
-          <meshStandardMaterial color="white" />
+          <meshStandardMaterial color="#FDFCF6" />
         </animated.mesh>
       </group>
     </group>

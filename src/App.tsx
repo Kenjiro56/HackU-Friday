@@ -28,8 +28,24 @@ const App: React.FC = () => {
   return (
     <div id="canvas-container">
       <Canvas camera={{ position: [0, 0, 3] }}>
-        <ambientLight intensity={1} />
-        <pointLight position={[10, 10, 10]} />
+        <ambientLight color={0xffffff} intensity={1} />
+        <hemisphereLight
+          color={0xffffff}
+          groundColor={0x444444}
+          intensity={1}
+        />
+
+        <spotLight
+          color={0xffffff}
+          intensity={3}
+          position={[0, 1, 3]}
+          angle={Math.PI / 6}
+          penumbra={0.1}
+          distance={100}
+          decay={2}
+          castShadow
+        />
+
         <OrbitControls />
         <group position={[0, 1, 0]}>
           {/* グループ全体をy軸方向に+1 */}

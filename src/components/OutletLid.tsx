@@ -48,7 +48,7 @@ export default function GashaponCapsule() {
           rotation={[-Math.PI / 9, 0, 0]}
         >
           <boxGeometry args={[0.5, 0.3, 0.02]} />
-          <meshStandardMaterial color="white" />
+          <meshStandardMaterial color="#FDFCF6" />
         </animated.mesh>
       </group>
     </group>

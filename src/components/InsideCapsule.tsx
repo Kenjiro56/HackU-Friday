@@ -8,7 +8,7 @@ export default function InsideCapsule() {
 
   // カプセルの色をランダムに設定
   const color = useMemo(() => {
-    const colors = ["skyblue", "red", "green", "yellow", "purple", "orange"];
+    const colors = ["#6CB9FF", "#FCC605", "#FC842E"];
     return colors[Math.floor(Math.random() * colors.length)];
   }, []);
 

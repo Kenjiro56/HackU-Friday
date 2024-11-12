@@ -4,19 +4,19 @@ export default function GashaponMachine() {
       {/* 上部の透明な球体 */}
       <mesh position={[0, 1, 0]}>
         <sphereGeometry args={[1, 100, 100]} />
-        <meshStandardMaterial color="white" opacity={0.3} transparent />
+        <meshStandardMaterial color="#FDFCF6" opacity={0.3} transparent />
       </mesh>
 
       {/* 下部の本体 */}
       <mesh position={[0, -0.5, 0]}>
         <cylinderGeometry args={[0.55, 1, 1.4, 100]} />
-        <meshStandardMaterial color="skyblue" />
+        <meshStandardMaterial color="#6CB9FF" />
       </mesh>
 
       {/* 取っ手の土台 */}
       <mesh position={[0, -0.1, 0.6]} rotation={[(Math.PI * 80) / 180, 0, 0]}>
         <cylinderGeometry args={[0.2, 0.2, 0.2, 32]} />
-        <meshStandardMaterial color="white" />
+        <meshStandardMaterial color="#FDFCF6" />
       </mesh>
 
       {/* 取り出し口 */}
