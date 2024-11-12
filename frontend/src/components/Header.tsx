@@ -1,56 +1,32 @@
 'use client';
-import React, { useState, useEffect, useRef } from 'react';
-import Link from 'next/link';
-// import LogoIcon from '@/assets/logo.svg';
-// import DropDown from '@/assets/dropDown.svg';
-import DropMenu from './DropMenu';
+import React from 'react';
+import { useRouter, usePathname } from 'next/navigation';
+import Logo from '../assets/logo.svg';
+
 
 const Header: React.FC = () => {
-  const [isDropMenuOpen, setIsDropMenuOpen] = useState(false);
-  const menuRef = useRef<HTMLDivElement>(null);
+  const router = useRouter();
+  const currentPath = usePathname();
 
-  // メニューをトグルする関数
-  const toggleDropMenu = () => {
-    setIsDropMenuOpen((prev) => !prev);
+  const navigateToHome = () => {
+    router.push('/gachaHome');
   };
 
-  // メニュー外をクリックしたときに閉じる
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
-        setIsDropMenuOpen(false);
-      }
-    };
-
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, []);
+  const navigateToBucketList = () => {
+    router.push('/bucketList');
+  };
 
   return (
-    <header className="bg-white text-gray p-2 min-h-16 shadow-bottom">
-      <nav className="flex justify-between items-center">
-        <h1 className="text-lg font-bold">
-          <Link href="/">
-            {/* <LogoIcon width={270} height={50} /> */}
-          </Link>
-        </h1>
-        <div className="relative" ref={menuRef}>
-          <div
-            className="space-x-4 flex mr-10 items-center cursor-pointer"
-            onClick={toggleDropMenu} // クリック時にメニューの表示/非表示をトグル
-          >
-            <h2 className="text-gray-600 font-bold cursor-pointer">ユーザー名</h2>
-            {/* <DropDown /> */}
-          </div>
-          {isDropMenuOpen && ( // メニューが開いているときのみ表示
-            <div className="absolute top-full right-0 mt-2 transform translate-y-4 mr-7 cursor-pointer">
-              <DropMenu />
-            </div>
-          )}
-        </div>
-      </nav>
+    <header className="w-full max-w-xs mx-auto flex flex-col items-center p-4 fixed top-0 left-0 right-0 z-10">
+      <Logo width={100} height={50} />
+      <div className="flex w-full rounded-full overflow-hidden border-2 border-black">
+        <button onClick={navigateToHome} className={`flex-1 py-2 ${
+          currentPath === '/gachaHome' ? 'bg-black text-white' : 'bg-white text-black'
+        }`}>ガチャをひく</button>
+        <button onClick={navigateToBucketList} className={`flex-1 py-2 ${
+          currentPath === '/bucketList' ? 'bg-black text-white' : 'bg-white text-black'
+        }`}>やりたいこと</button>
+      </div>
     </header>
   );
 };

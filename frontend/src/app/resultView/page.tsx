@@ -1,11 +1,18 @@
+'use client';
 import React from 'react';
+interface GachaButtonProps {
+  mixMode: boolean;
+  timeCategoryIndex: number;
+}
 
-const Home: React.FC = () => {
-    return (
-        <>
-            resultViewだよーん
-        </>
-    );
-};
+// const GachaButton: React.FC<GachaButtonProps> = ({ mixMode, timeCategoryIndex }) => {
+const resultView: React.FC = () => {
 
-export default Home;
+  return (
+    <>
+        この画面いらなくね？
+    </>
+  );
+}
+
+export default resultView;

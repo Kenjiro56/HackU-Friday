@@ -3,7 +3,7 @@
 ### 起動コマンド
 
 dockerDesktop を起動した状態で
-`docker-compose up --build`
+`docker compose up --build`
 
 ### 使用技術
 
