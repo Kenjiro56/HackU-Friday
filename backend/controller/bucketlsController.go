@@ -97,6 +97,31 @@ func DrawAllBucketsAll(c *gin.Context) { //全バケットリスト全てから�
 	c.JSON(200, buckets)
 }
 
+func DrawMyTimeBucket(c *gin.Context) {
+	var buckets []models.Bucket
+
+	userIDParam := c.Param("user_id")
+	userID, err := strconv.ParseUint(userIDParam, 10, 64)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid user ID"})
+		return
+	}
+
+	timeIDParam := c.Param("time_id")
+	timeID, err := strconv.ParseUint(timeIDParam, 10, 64)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid time ID"})
+		return
+	}
+
+	if err := db.DB.Where("user_id = ? AND time_id = ?", userID, timeID).Find(&buckets).Error; err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to retrieve data"})
+		return
+	}
+
+	c.JSON(http.StatusOK, buckets)
+}
+
 func EditBucket(c *gin.Context) { //バケットの編集
 	var requestBody struct {
 		UserID      int    `json:"user_id"`
@@ -126,19 +151,6 @@ func EditBucket(c *gin.Context) { //バケットの編集
 	// JSON形式でレスポンスを返す
 	c.JSON(200, response)
 
-}
-
-func DrawMyBucketSelected(c *gin.Context) { //自分のバケットリストから時間指定したバケットを取得
-	bucket := gin.H{
-		"id":           2,
-		"bucket_title": "DrawMuBucketSelectedObject",
-		"time_id":      1,
-		"loop_flag":    true,
-		"created_at":   "2024-10-29T06:11:04.528971Z",
-		"updated_at":   "2024-10-29T06:11:04.528971Z",
-	}
-
-	c.JSON(200, bucket)
 }
 
 func DrawAllBucketSelected(c *gin.Context) { //全バケットリストから時間指定したバケットを取得
