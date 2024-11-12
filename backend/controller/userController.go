@@ -36,73 +36,31 @@ func CreateUser(c *gin.Context) { //ユーザーの作成
 }
 
 func GetUsers(c *gin.Context) { //全ユーザーの取得
-
-	users := []gin.H{
-		{
-			"id":        1,
-			"user_name": "",
-			"email":     "test@test.com",
-			"password":  "test@123",
-		},
-		{
-			"id":        2,
-			"user_name": "",
-			"email":     "test2@test.com",
-			"password":  "test@123",
-		},
-		{
-			"id":        6,
-			"user_name": "",
-			"email":     "test3@test.com",
-			"password":  "test@123",
-		},
+	var users []models.User
+	if err := db.DB.Find(&users).Error; err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+		return
 	}
-
-	// JSON形式でダミーデータを返す
-	c.JSON(200, users)
-
-	// var users []models.User
-	// if err := db.DB.Find(&users).Error; err != nil {
-	// 	c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
-	// 	return
-	// }
-	// c.JSON(http.StatusOK, users)
+	c.JSON(http.StatusOK, users)
 }
 
 func GetUser(c *gin.Context) { //ユーザーの検索
-
-	user := gin.H{
-		"id":        7,
-		"user_name": "test4",
-		"email":     "test4@test.com",
-		"password":  "test@123",
+	id := c.Param("id")
+	var user models.User
+	if err := db.DB.First(&user, id).Error; err != nil {
+		c.JSON(http.StatusNotFound, gin.H{"error": "User not found"})
+		return
 	}
-
-	c.JSON(200, user)
-
-	// id := c.Param("id")
-	// var user models.User
-	// if err := db.DB.First(&user, id).Error; err != nil {
-	// 	c.JSON(http.StatusNotFound, gin.H{"error": "User not found"})
-	// 	return
-	// }
-	// c.JSON(http.StatusOK, user)
+	c.JSON(http.StatusOK, user)
 }
 
 func DeleteUser(c *gin.Context) {
-
-	user := gin.H{
-		"message": "User deleted",
+	id := c.Param("id")
+	if err := db.DB.Delete(&models.User{}, id).Error; err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+		return
 	}
-
-	c.JSON(200, user)
-
-	// id := c.Param("id")
-	// if err := db.DB.Delete(&models.User{}, id).Error; err != nil {
-	// 	c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
-	// 	return
-	// }
-	// c.JSON(http.StatusOK, gin.H{"message": "User deleted"})
+	c.JSON(http.StatusOK, gin.H{"message": "User deleted"})
 }
 
 // Login - ログイン機能の追加
