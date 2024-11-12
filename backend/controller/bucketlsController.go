@@ -7,6 +7,7 @@ import (
 	"strconv"
 
 	"github.com/gin-gonic/gin"
+	"gorm.io/gorm"
 )
 
 func CreateBucket(c *gin.Context) { //バケットの作成
@@ -55,6 +56,47 @@ func GetUserBuckets(c *gin.Context) { //全バケットの取得(現在ログイ
 	c.JSON(http.StatusOK, buckets)
 }
 
+func DrawMyBucketsAll(c *gin.Context) { //自分のバケットリスト全てからランダムに1つ取得
+	var buckets []models.Bucket
+	// URL パラメータから UserID を取得してパースする
+	userIDParam := c.Param("id")
+	userID, err := strconv.ParseUint(userIDParam, 10, 64)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid user ID"})
+		return
+	}
+
+	// ランダムに 1 つの Bucket レコードを取得するクエリを実行
+	if err := db.DB.Order("RANDOM()").Where("user_id = ?", userID).First(&buckets).Error; err != nil {
+		// レコードが見つからない場合のエラーハンドリング
+		if err == gorm.ErrRecordNotFound {
+			c.JSON(http.StatusNotFound, gin.H{"error": "No matching bucket found"})
+			return
+		}
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to retrieve data"})
+		return
+	}
+
+	c.JSON(200, buckets)
+}
+
+func DrawAllBucketsAll(c *gin.Context) { //全バケットリスト全てからランダムに1つ取得
+	var buckets []models.Bucket
+
+	// ランダムに 1 つの Bucket レコードを取得するクエリを実行
+	if err := db.DB.Order("RANDOM()").First(&buckets).Error; err != nil {
+		// レコードが見つからない場合のエラーハンドリング
+		if err == gorm.ErrRecordNotFound {
+			c.JSON(http.StatusNotFound, gin.H{"error": "No matching bucket found"})
+			return
+		}
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to retrieve data"})
+		return
+	}
+
+	c.JSON(200, buckets)
+}
+
 func EditBucket(c *gin.Context) { //バケットの編集
 	var requestBody struct {
 		UserID      int    `json:"user_id"`
@@ -84,32 +126,6 @@ func EditBucket(c *gin.Context) { //バケットの編集
 	// JSON形式でレスポンスを返す
 	c.JSON(200, response)
 
-}
-
-func DrawMyBucketsAll(c *gin.Context) { //自分のバケットリスト全てからランダムに1つ取得
-	bucket := gin.H{
-		"id":           2,
-		"bucket_title": "DrawMyBucketsAll",
-		"time_id":      1,
-		"loop_flag":    true,
-		"created_at":   "2024-10-29T06:11:04.528971Z",
-		"updated_at":   "2024-10-29T06:11:04.528971Z",
-	}
-
-	c.JSON(200, bucket)
-}
-
-func DrawAllBucketsAll(c *gin.Context) { //全バケットリスト全てからランダムに1つ取得
-	bucket := gin.H{
-		"id":           2,
-		"bucket_title": "DrawAllBucketsAll",
-		"time_id":      1,
-		"loop_flag":    false,
-		"created_at":   "2024-10-29T06:11:04.528971Z",
-		"updated_at":   "2024-10-29T06:11:04.528971Z",
-	}
-
-	c.JSON(200, bucket)
 }
 
 func DrawMyBucketSelected(c *gin.Context) { //自分のバケットリストから時間指定したバケットを取得

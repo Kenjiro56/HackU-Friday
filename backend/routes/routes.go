@@ -23,7 +23,7 @@ func DefineRoutes(r gin.IRouter) {
 		bucketls.DELETE("/delete/:id", controller.DeleteBucket)
 		bucketls.PUT("/edit/:id", controller.EditBucket)
 		bucketls.GET("/getAll/:id", controller.GetUserBuckets)
-		bucketls.GET("/popAll/:id", controller.DrawAllBucketsAll)
+		bucketls.GET("/popAll/:id", controller.DrawMyBucketsAll)
 		bucketls.GET("/popAll/all", controller.DrawAllBucketsAll)
 		bucketls.GET("/popSelect/:time_id/:user_id", controller.DrawMyBucketSelected)
 		bucketls.GET("/popSelect/:time_id/all", controller.DrawAllBucketSelected)
