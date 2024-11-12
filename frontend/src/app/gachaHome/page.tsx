@@ -8,6 +8,7 @@ const GachaHome: React.FC = () => {
   const [isMixMode, setIsMixMode] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [apiResponse, setApiResponse] = useState(null);
+  const [timeCategory, setTimeCategory] = useState(0);
 
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [visibleItem, setVisibleItem] = useState<string>('短時間');
@@ -24,15 +25,19 @@ const GachaHome: React.FC = () => {
       switch (index) {
         case 0:
           setVisibleItem('短時間');
+          setTimeCategory(0);
           break;
         case 1:
           setVisibleItem('数時間');
+          setTimeCategory(1);
           break;
         case 2:
           setVisibleItem('1日');
+          setTimeCategory(2);
           break;
         default:
           setVisibleItem('短時間');
+          setTimeCategory(0);
       }
     }
   };
@@ -65,14 +70,13 @@ const GachaHome: React.FC = () => {
   // トグルの切り替え
   const handleToggle = () => setIsMixMode(!isMixMode);
   const userId = 1; //あとで変更できるようにする
-  const timeCategoryIndex = 0; //ここも
 
 
   // ガチャボタンが押されたときの処理
   const handleGachaClick = async () => {
     const endpoint = isMixMode
-      ? `http://localhost:8080/bucketls/popSelect/${timeCategoryIndex}/all`
-      : `http://localhost:8080/bucketls/popSelect/${timeCategoryIndex}/${userId}`;
+      ? `http://localhost:8080/bucketls/popSelect/${timeCategory}/all`
+      : `http://localhost:8080/bucketls/popSelect/${timeCategory}/${userId}`;
     try {
       const response = await fetch(endpoint);
       const data = await response.json();
