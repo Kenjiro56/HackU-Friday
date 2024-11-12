@@ -2,7 +2,6 @@
 
 import React, { useState } from 'react';
 import Modal from './components/Modal';
-import GachaImage from '../../assets/gachaImage.svg';
 import Image from 'next/image';
 
 const GachaHome: React.FC = () => {
@@ -31,46 +30,60 @@ const GachaHome: React.FC = () => {
   };
 
   return (
-    <div flex flex-col items-center min-h-screen bg-blue-300>
-        {/* ガチャスクロール部分 */}
-        <div className="overflow-x-auto py-4">
-          <div className="flex space-x-4 px-4 w-full max-w-xs mx-auto">
-            <div className="min-w-full">
-              <Image src={GachaImage} alt="ガチャ1" width={300} height={400} className="rounded-lg border-2 border-black" />
+    <div>
+        {/* ガチャ部分 */}
+        <div className="overflow-x-auto">
+          <div className="flex space-x-4 max-w-xs mx-auto px-3">
+            {/* 短時間 */}
+            <div className="flex bg-white rounded-[30px] border-2 border-black relative w-[312px] h-[418px] justify-center items-center min-w-full">
+                <div className="absolute top-3 left-3 bg-white text-[#FCC605] text-sm px-3 py-2 rounded-[100px] border-2 border-[#FCC605] w-[84px] h-[42px] flex justify-center items-center">
+                  短時間
+                </div>
+                <Image src="/gacha.png" alt="短時間" width={192} height={338} />
             </div>
-            <div className="min-w-full">
-              <Image src={GachaImage} alt="ガチャ2" width={300} height={400} className="rounded-lg border-2 border-black" />
+
+            {/* 数時間 */}
+            <div className="flex bg-white rounded-[30px] border-2 border-black relative w-[312px] h-[418px] justify-center items-center min-w-full">
+                <div className="absolute top-3 left-3 bg-white text-[#6CB9FF] text-sm px-3 py-2 rounded-[100px] border-2 border-[#6CB9FF] w-[84px] h-[42px] flex justify-center items-center ">
+                  数時間
+                </div>
+                <Image src="/gacha.png" alt="短時間" width={192} height={338} />
             </div>
-            <div className="min-w-full">
-              <Image src={GachaImage} alt="ガチャ3" width={300} height={400} className="rounded-lg border-2 border-black" />
+
+            {/* 一日 */}
+            <div className="flex bg-white rounded-[30px] border-2 border-black relative w-[312px] h-[418px] justify-center items-center min-w-full">
+                <div className="absolute top-3 left-3 bg-white text-[#FC842E] text-sm px-3 py-2 rounded-[100px] border-2 border-[#FC842E] w-[84px] h-[42px] flex justify-center items-center ">
+                  1日
+                </div>
+                <Image src="/gacha.png" alt="短時間" width={192} height={338} />
             </div>
           </div>
         </div>
+        {/* ごちゃ混ぜモード切り替え部 */}
+        <div className="flex items-center space-x-2 mt-4 justify-center py-3">
+          <button
+              className="flex items-center justify-center w-6 h-6 rounded-full bg-white text-xs text-black mr-2 border border-black"
+              aria-label="ごちゃ混ぜモードの説明"
+            >
+            ?
+          </button>
 
-        {/* ごちゃ混ぜモード部分 */}
-        <div className="flex items-center space-x-2 mt-4 justify-center">
-        <button
-            className="flex items-center justify-center w-6 h-6 rounded-full bg-white text-xs text-black mr-2 border border-black"
-            aria-label="ごちゃ混ぜモードの説明"
-          >
-          ?
-        </button>
+          <span className="text-lg">ごちゃ混ぜモード</span>
+          <input type="checkbox" className="toggle-checkbox hidden" id="toggle" checked={isMixMode} onChange={handleToggle} />
+          <label htmlFor="toggle"
+            className={`toggle-label block w-12 h-6 rounded-full cursor-pointer transition-colors ${
+              isMixMode ? 'bg-black' : 'bg-gray-300'
+            }`}>
+            <span className={`dot absolute w-6 h-6 bg-white rounded-full transition-transform ${
+                isMixMode ? 'translate-x-6' : 'translate-x-0'
+            }`}></span>
+          </label>
+        </div>
 
-        <span className="text-lg">ごちゃ混ぜモード</span>
-        <input type="checkbox" className="toggle-checkbox hidden" id="toggle" checked={isMixMode} onChange={handleToggle} />
-        <label htmlFor="toggle"
-          className={`toggle-label block w-12 h-6 rounded-full cursor-pointer transition-colors ${
-            isMixMode ? 'bg-black' : 'bg-gray-300'
-          }`}>
-          <span className={`dot absolute w-6 h-6 bg-white rounded-full transition-transform ${
-              isMixMode ? 'translate-x-6' : 'translate-x-0'
-          }`}></span>
-        </label>
-      </div>
+        {/* ガチャを引くボタン */}
+        <button onClick={handleGachaClick} className="mt-4 py-3 px-6 bg-black text-white rounded-full shadow-lg mx-auto block">ガチャを回す</button>
+        {isModalOpen && <Modal data={apiResponse} onClose={() => setIsModalOpen(false)} />}
 
-      {/* ガチャを回すボタン部分 */}
-      <button onClick={handleGachaClick} className="mt-4 py-3 px-6 bg-black text-white rounded-full shadow-lg mx-auto block">ガチャを回す</button>
-      {isModalOpen && <Modal data={apiResponse} onClose={() => setIsModalOpen(false)} />}
     </div>
   );
 };
