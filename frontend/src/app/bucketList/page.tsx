@@ -52,7 +52,7 @@ const buckerListView: React.FC = () => {
       description: 'バケットリスト1の説明',
     },
     {
-      id: 1,
+      id: 6,
       user_id: 1,
       bucket_title: 'バケットリスト6',
       time_id: 1,
@@ -97,13 +97,7 @@ const buckerListView: React.FC = () => {
           ):(
             <ul>
               {bucketItems.map((item) => (
-                // <li key={item.id}>{item.bucket_title}
-                // <button
-                //   onClick={() => handleEditClick(item.id)}
-
-                // >Edit</button>
-                // </li>
-                <Card id={item.id} bucket_title={item.bucket_title} time_id={item.time_id}/>
+                <Card key={item.id} item_id={item.id} bucket_title={item.bucket_title} time_id={item.time_id}/>
               ))}
             </ul>
           )}
@@ -117,7 +111,7 @@ const buckerListView: React.FC = () => {
                     width: '50px',
                     height: '50px',
                     borderRadius: '50%',
-                    backgroundColor: '#4CAF50',
+                    backgroundColor: 'black',
                     color: 'white',
                     fontSize: '24px',
                     border: 'none',
