@@ -54,8 +54,8 @@ const NewBucketModal: React.FC<ModalProps> = ({ onClose }) => {
       >
         <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M25 50C38.8071 50 50 38.8071 50 25C50 11.1929 38.8071 0 25 0C11.1929 0 0 11.1929 0 25C0 38.8071 11.1929 50 25 50Z" fill="#111111"/>
-          <path d="M25.0711 32.0711L18 25L25.0711 17.9289" stroke="#F8F7F1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M32.1421 25H18" stroke="#F8F7F1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M25.0711 32.0711L18 25L25.0711 17.9289" stroke="#F8F7F1" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
+          <path d="M32.1421 25H18" stroke="#F8F7F1" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
         </svg>
       </button>
 
