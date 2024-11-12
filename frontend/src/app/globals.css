@@ -42,7 +42,7 @@ html, body {
   padding: 0;
   box-sizing: border-box;
   font-family: Arial, sans-serif;
-  background-color: #6CB9FF; /* 背景色をページ全体に適用 */
+  background-color: FFF; /* 背景色をページ全体に適用 */
 }
 
 body {
