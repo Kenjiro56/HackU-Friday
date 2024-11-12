@@ -1,7 +1,7 @@
 package routes
 
 import (
-	"HackU-Friday/controller"
+	"hacku-friday/controller"
 
 	"github.com/gin-gonic/gin"
 )
@@ -22,11 +22,11 @@ func DefineRoutes(r gin.IRouter) {
 		bucketls.POST("/add", controller.CreateBucket)
 		bucketls.DELETE("/delete/:id", controller.DeleteBucket)
 		bucketls.PUT("/edit/:id", controller.EditBucket)
-		bucketls.GET("/getAll/:id", controller.GetBuckets)
-		bucketls.GET("/popAll/:id", controller.DrawAllBucketsAll)
+		bucketls.GET("/getAll/:id", controller.GetUserBuckets)
+		bucketls.GET("/popAll/:id", controller.DrawMyBucketsAll)
 		bucketls.GET("/popAll/all", controller.DrawAllBucketsAll)
-		bucketls.GET("/popSelect/:time_id/:user_id", controller.DrawMyBucketSelected)
-		bucketls.GET("/popSelect/:time_id/all", controller.DrawAllBucketSelected)
+		bucketls.GET("/popSelect/:time_id/:user_id", controller.DrawMyTimeBuckets)
+		bucketls.GET("/popSelect/:time_id/all", controller.DrawTimeBuckets)
 
 	}
 
