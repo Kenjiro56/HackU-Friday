@@ -4,6 +4,7 @@ import (
 	"hacku-friday/db"
 	"hacku-friday/models"
 	"net/http"
+	"strconv"
 
 	"github.com/gin-gonic/gin"
 )
@@ -27,11 +28,31 @@ func CreateBucket(c *gin.Context) { //バケットの作成
 }
 
 func DeleteBucket(c *gin.Context) { //バケットの削除
-	bucket := gin.H{
-		"message": "Bucket deleted",
+	id := c.Param("id")
+	if err := db.DB.Delete(&models.Bucket{}, id).Error; err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+		return
+	}
+	c.JSON(http.StatusOK, gin.H{"message": "Bucket deleted"})
+}
+
+func GetUserBuckets(c *gin.Context) { //全バケットの取得(現在ログインしてるuserのみ)
+	var buckets []models.Bucket
+	userIDParam := c.Param("id")
+	//以下のコードでidが存在してるかどうかを確認してる
+	userID, err := strconv.ParseUint(userIDParam, 10, 64)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid user ID"})
+		return
+	}
+	//userIDが一致する全データを取得してきてresponseとして返してる
+	if err := db.DB.Where("user_id = ?", userID).Find(&buckets).Error; err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to retrieve data"})
+		return
 	}
 
-	c.JSON(200, bucket)
+	// JSON形式でダミーデータを返す
+	c.JSON(http.StatusOK, buckets)
 }
 
 func EditBucket(c *gin.Context) { //バケットの編集
@@ -63,41 +84,6 @@ func EditBucket(c *gin.Context) { //バケットの編集
 	// JSON形式でレスポンスを返す
 	c.JSON(200, response)
 
-}
-
-func GetBuckets(c *gin.Context) { //全バケットの取得
-	buckets := []gin.H{
-		{
-			"id":           2,
-			"user_id":      2,
-			"bucket_title": "Second Object",
-			"time_id":      false,
-			"loop_flag":    true,
-			"created_at":   "2024-10-29T06:11:04.528971Z",
-			"updated_at":   "2024-10-29T06:11:04.528971Z",
-		},
-		{
-			"id":           3,
-			"user_id":      2,
-			"bucket_title": "3 Object",
-			"time_id":      false,
-			"loop_flag":    true,
-			"created_at":   "2024-10-29T06:11:04.528971Z",
-			"updated_at":   "2024-10-29T06:11:04.528971Z",
-		},
-		{
-			"id":           4,
-			"user_id":      2,
-			"bucket_title": "4 Object",
-			"time_id":      false,
-			"loop_flag":    true,
-			"created_at":   "2024-10-29T06:11:04.528971Z",
-			"updated_at":   "2024-10-29T06:11:04.528971Z",
-		},
-	}
-
-	// JSON形式でダミーデータを返す
-	c.JSON(200, buckets)
 }
 
 func DrawMyBucketsAll(c *gin.Context) { //自分のバケットリスト全てからランダムに1つ取得
