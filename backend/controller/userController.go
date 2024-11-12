@@ -6,51 +6,33 @@ import (
 	// "HackU-Friday/utils"
 	// "net/http"
 
+	"hacku-friday/db"
+	"hacku-friday/models"
+	"hacku-friday/utils"
+	"net/http"
+
 	"github.com/gin-gonic/gin"
 )
 
 func CreateUser(c *gin.Context) { //ユーザーの作成
-	var user struct {
-		UserName string `json:"user_name"`
-		Email    string `json:"email"`
-		Password string `json:"password"`
-	}
-
-	// リクエストボディからデータをバインド
+	var user models.User
 	if err := c.ShouldBindJSON(&user); err != nil {
-		c.JSON(400, gin.H{"error": "Invalid input"})
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
-
-	// idを追加したレスポンスデータを作成
-	response := gin.H{
-		"id":        7, // ダミーID
-		"user_name": user.UserName,
-		"email":     user.Email,
-		"password":  user.Password,
+	//この下でハッシュ化をしてる
+	hash, err := utils.HashPassword(user.Password)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to hash password"})
+		return
 	}
+	user.Password = hash
 
-	// JSON形式でデータを返す
-	c.JSON(200, response)
-
-	// var user models.User
-	// if err := c.ShouldBindJSON(&user); err != nil {
-	// 	c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
-	// 	return
-	// }
-	// //この下でハッシュ化をしてる
-	// hash, err := utils.HashPassword(user.Password)
-	// if err != nil {
-	// 	c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to hash password"})
-	// 	return
-	// }
-	// user.Password = hash
-
-	// if err := db.DB.Create(&user).Error; err != nil {
-	// 	c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
-	// 	return
-	// }
-	// c.JSON(http.StatusOK, user)
+	if err := db.DB.Create(&user).Error; err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+		return
+	}
+	c.JSON(http.StatusOK, user)
 }
 
 func GetUsers(c *gin.Context) { //全ユーザーの取得
