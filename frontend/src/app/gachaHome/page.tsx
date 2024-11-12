@@ -92,6 +92,9 @@ const GachaHome: React.FC = () => {
     } catch (error) {
       console.error('ガチャデータの取得に失敗しました:', error);
     }
+
+    // debug用
+    // setIsEmptyModalOpen(true);
   };
 
   return (
