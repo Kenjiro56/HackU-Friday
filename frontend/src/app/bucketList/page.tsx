@@ -62,21 +62,21 @@ const buckerListView: React.FC = () => {
   ];
 
   useEffect(() => {
-    setLoading(false);
-    setBucketItems(dummyData);
+    // setLoading(false);
+    // setBucketItems(dummyData);
 
-    // const fetchBucketItems = async () =>{
-    //   try{
-    //     const response = await fetch(`http://localhost:8080/bucketls/getAll/${userId}`);
-    //     const data = await response.json();
-    //     setBucketItems(data);
-    //   } catch (error) {
-    //     console.error('バケットリストの取得に失敗しました:', error);
-    //   }finally{
-    //     setLoading(false);
-    //   }
-    // };
-    // fetchBucketItems();
+    const fetchBucketItems = async () =>{
+      try{
+        const response = await fetch(`http://localhost:8080/bucketls/getAll/${userId}`);
+        const data = await response.json();
+        setBucketItems(data);
+      } catch (error) {
+        console.error('バケットリストの取得に失敗しました:', error);
+      }finally{
+        setLoading(false);
+      }
+    };
+    fetchBucketItems();
   }, []);
   const handleAddClick = () => {
     // 追加ボタンがクリックされたときの処理をここに書きます
