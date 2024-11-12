@@ -1,44 +1,29 @@
 package controller
 
 import (
-	// "HackU-Friday/db"
-	// "HackU-Friday/models"
-	// "HackU-Friday/utils"
-	// "net/http"
+	"hacku-friday/db"
+	"hacku-friday/models"
+	"net/http"
 
 	"github.com/gin-gonic/gin"
 )
 
 func CreateBucket(c *gin.Context) { //バケットの作成
 	// リクエストボディの構造体を定義
-	var requestBody struct {
-		UserID      int    `json:"user_id"`
-		BucketTitle string `json:"bucket_title"`
-		TimeID      int    `json:"time_id"`
-		LoopFlag    bool   `json:"loop_flag"`
-		Description string `json:"description"`
-	}
+	var requestBody models.Bucket
 
 	// リクエストボディをバインド
 	if err := c.ShouldBindJSON(&requestBody); err != nil {
 		c.JSON(400, gin.H{"error": "Invalid input"})
 		return
 	}
-
-	// レスポンス用のダミーデータを作成
-	response := gin.H{
-		"id":           2, // ダミーID
-		"user_id":      2, // ダミーのuser_id
-		"bucket_title": "Second Object",
-		"time_id":      false, // ダミーデータでbool値に変更
-		"loop_flag":    requestBody.LoopFlag,
-		"description":  requestBody.Description,
-		"created_at":   "2024-10-29T06:11:04.528971Z", // ダミーのタイムスタンプ
-		"updated_at":   "2024-10-29T06:11:04.528971Z", // ダミーのタイムスタンプ
+	// ここでバインドしたrequestBodyをdbに追加
+	if err := db.DB.Create(&requestBody).Error; err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+		return
 	}
-
-	// JSON形式でデータを返す
-	c.JSON(200, response)
+	//データをレスポンスとして返す
+	c.JSON(http.StatusOK, requestBody)
 }
 
 func DeleteBucket(c *gin.Context) { //バケットの削除
