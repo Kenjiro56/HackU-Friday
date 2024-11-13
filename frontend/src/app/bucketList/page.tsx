@@ -1,6 +1,7 @@
 'use client';
 import React, { useState, useEffect } from 'react';
 import NewBucketModal from './components/NewBucketModal';
+import Card from './components/Card';
 
 
 const buckerListView: React.FC = () => {
@@ -9,7 +10,61 @@ const buckerListView: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
   const userId = 1; //あとで変更できるようにする
+  const dummyData = [
+    {
+      id: 1,
+      user_id: 1,
+      bucket_title: 'バケットリスト1',
+      time_id: 0,
+      loop_flag: false,
+      description: 'バケットリスト1の説明',
+    },
+    {
+      id: 2,
+      user_id: 1,
+      bucket_title: 'バケットリスト2',
+      time_id: 3,
+      loop_flag: false,
+      description: 'バケットリスト1の説明',
+    },
+    {
+      id: 3,
+      user_id: 1,
+      bucket_title: 'バケットリスト3',
+      time_id: 0,
+      loop_flag: false,
+      description: 'バケットリスト1の説明',
+    },
+    {
+      id: 4,
+      user_id: 1,
+      bucket_title: 'バケットリスト4',
+      time_id: 1,
+      loop_flag: false,
+      description: 'バケットリスト1の説明',
+    },
+    {
+      id: 5,
+      user_id: 1,
+      bucket_title: 'バケットリスト5',
+      time_id: 2,
+      loop_flag: false,
+      description: 'バケットリスト1の説明',
+    },
+    {
+      id: 6,
+      user_id: 1,
+      bucket_title: 'バケットリスト6',
+      time_id: 1,
+      loop_flag: false,
+      description: 'バケットリスト1の説明',
+    },
+  ];
+
   useEffect(() => {
+    // setLoading(false);
+    // setBucketItems(dummyData);
+
     const fetchBucketItems = async () =>{
       try{
         const response = await fetch(`http://localhost:8080/bucketls/getAll/${userId}`);
@@ -42,12 +97,7 @@ const buckerListView: React.FC = () => {
           ):(
             <ul>
               {bucketItems.map((item) => (
-                <li key={item.id}>{item.bucket_title}
-                <button
-                  onClick={() => handleEditClick(item.id)}
-
-                >Edit</button>
-                </li>
+                <Card key={item.id} item_id={item.id} bucket_title={item.bucket_title} time_id={item.time_id}/>
               ))}
             </ul>
           )}
@@ -61,7 +111,7 @@ const buckerListView: React.FC = () => {
                     width: '50px',
                     height: '50px',
                     borderRadius: '50%',
-                    backgroundColor: '#4CAF50',
+                    backgroundColor: 'black',
                     color: 'white',
                     fontSize: '24px',
                     border: 'none',
