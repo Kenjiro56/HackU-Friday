@@ -41,10 +41,7 @@ export default function RootLayout({
   return (
     <html lang="ja" className={notoSansJp.variable}>
 
-      <body
-        // className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-        className={notoSansJp.variable}
-      >
+      <body>
         <Header />
         {children}
       </body>

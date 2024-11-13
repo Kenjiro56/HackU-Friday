@@ -2,11 +2,13 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 import Modal from './components/Modal';
+import DescriptionModal from './components/DescriptionModal';
 import Image from 'next/image';
 
 const GachaHome: React.FC = () => {
   const [isMixMode, setIsMixMode] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isDesModalOpen, setIsDesModalOpen] = useState(false);
   const [apiResponse, setApiResponse] = useState(null);
   const [timeCategory, setTimeCategory] = useState(0);
 
@@ -128,9 +130,11 @@ const GachaHome: React.FC = () => {
           <button
               className="flex items-center justify-center w-6 h-6 rounded-full bg-white text-xs text-black mr-2 border border-black"
               aria-label="ごちゃ混ぜモードの説明"
+              onClick={() => setIsDesModalOpen(true)}
             >
             ?
           </button>
+          {isDesModalOpen && <DescriptionModal onClose={() => setIsDesModalOpen(false)} />}
 
           <span className="text-lg">ごちゃ混ぜモード</span>
           <input type="checkbox" className="toggle-checkbox hidden" id="toggle" checked={isMixMode} onChange={handleToggle} />
