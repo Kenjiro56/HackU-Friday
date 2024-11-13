@@ -17,8 +17,8 @@ const App: React.FC = () => {
     // 秒ごとに各コンポーネントの表示を切り替える
     const timers = [
       setTimeout(() => setShowEmmisionCapsule(true), 1000), // 1000ms後に排出カプセル表示
-      setTimeout(() => setShowEmmisionCapsule(false), 2500), // 1800ms後に排出カプセル消去
-      setTimeout(() => setShowGashaponCapsule(true), 2500), // 1800ms後にカプセルアニメーションを表示
+      setTimeout(() => setShowEmmisionCapsule(false), 2500), // 2500ms後に排出カプセル消去
+      setTimeout(() => setShowGashaponCapsule(true), 2500), // 2500ms後にカプセルアニメーションを表示
     ];
 
     // クリーンアップ
@@ -27,7 +27,7 @@ const App: React.FC = () => {
 
   return (
     <div id="canvas-container">
-      <Canvas camera={{ position: [0, 0, 3] }}>
+      <Canvas camera={{ position: [0, 0, 4] }}>
         <ambientLight color={0xffffff} intensity={1} />
         <hemisphereLight
           color={0xffffff}

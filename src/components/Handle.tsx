@@ -1,6 +1,7 @@
 import React, { useRef, useState, useEffect } from "react";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
+import { RoundedBox } from "@react-three/drei";
 
 export default function Capsule() {
   const handleRef = useRef<THREE.Mesh>(null); // ハンドル用のRef
@@ -24,6 +25,9 @@ export default function Capsule() {
       rotation={[(Math.PI * 80) / 180, 0, 0]}
     >
       <boxGeometry args={[0.25, 0.2, 0.05]} />
+      <RoundedBox args={[0.25, 0.2, 0.05]} radius={0.01} smoothness={4}>
+        <meshStandardMaterial color="gray" />
+      </RoundedBox>
       <meshStandardMaterial color="gray" />
     </mesh>
   );

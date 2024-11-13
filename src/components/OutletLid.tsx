@@ -2,6 +2,7 @@ import React, { useRef, useState, useEffect } from "react";
 import { useFrame } from "@react-three/fiber";
 import { animated } from "@react-spring/three";
 import * as THREE from "three";
+import { RoundedBox } from "@react-three/drei";
 
 export default function GashaponCapsule() {
   const outletLidRef = useRef<THREE.Group>(null); // 取り出し口の蓋用のRef
@@ -47,8 +48,9 @@ export default function GashaponCapsule() {
           position={outletLidStartPosition}
           rotation={[-Math.PI / 9, 0, 0]}
         >
-          <boxGeometry args={[0.5, 0.3, 0.02]} />
-          <meshStandardMaterial color="#FDFCF6" />
+          <RoundedBox args={[0.5, 0.3, 0.02]} radius={0.01} smoothness={4}>
+            <meshStandardMaterial color="#FDFCF6" />
+          </RoundedBox>
         </animated.mesh>
       </group>
     </group>
