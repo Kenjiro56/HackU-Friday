@@ -103,22 +103,22 @@ const GachaHome: React.FC = () => {
 
   // ガチャボタンが押されたときの処理
   const handleGachaClick = async () => {
-    // const endpoint = isMixMode
-    //   ? `http://localhost:8080/bucketls/popSelect/${timeCategory}/all`
-    //   : `http://localhost:8080/bucketls/popSelect/${timeCategory}/${userId}`;
-    // try {
-    //   const response = await fetch(endpoint);
-    //   const data = await response.json();
-    //   setApiResponse(data);  // レスポンスをstateに保存
-    //   setIsModalOpen(true);  // モーダルを表示
-    // } catch (error) {
-    //   console.error('ガチャデータの取得に失敗しました:', error);
-    // }
+    const endpoint = isMixMode
+      ? `http://localhost:8080/bucketls/popSelect/${timeCategory}/all`
+      : `http://localhost:8080/bucketls/popSelect/${timeCategory}/${userId}`;
+    try {
+      const response = await fetch(endpoint);
+      const data = await response.json();
+      setApiResponse(data);  // レスポンスをstateに保存
+      setIsModalOpen(true);  // モーダルを表示
+    } catch (error) {
+      console.error('ガチャデータの取得に失敗しました:', error);
+    }
 
     // dummyDataを使ってモックデータを表示
-    const data = dummyData[1];
-    setApiResponse(data);  // レスポンスをstateに保存
-    setIsModalOpen(true);  // モーダルを表示
+    // const data = dummyData[2];
+    // setApiResponse(data);  // レスポンスをstateに保存
+    // setIsModalOpen(true);  // モーダルを表示
   };
 
   return (
