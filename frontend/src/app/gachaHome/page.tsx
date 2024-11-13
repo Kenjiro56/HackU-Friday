@@ -4,6 +4,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import Modal from './components/Modal';
 import DescriptionModal from './components/DescriptionModal';
 import Image from 'next/image';
+import EmptyModal from './components/EmptyModal';
 
 const GachaHome: React.FC = () => {
   const [isMixMode, setIsMixMode] = useState(false);
@@ -11,6 +12,7 @@ const GachaHome: React.FC = () => {
   const [isDesModalOpen, setIsDesModalOpen] = useState(false);
   const [apiResponse, setApiResponse] = useState(null);
   const [timeCategory, setTimeCategory] = useState(0);
+  const [isEmptyModalOpen, setIsEmptyModalOpen] = useState(false);
 
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [visibleItem, setVisibleItem] = useState<string>('短時間');
@@ -82,11 +84,19 @@ const GachaHome: React.FC = () => {
     try {
       const response = await fetch(endpoint);
       const data = await response.json();
+
       setApiResponse(data);  // レスポンスをstateに保存
       setIsModalOpen(true);  // モーダルを表示
+
+      if (data.length === 0) {
+        setIsEmptyModalOpen(true);
+      }
     } catch (error) {
       console.error('ガチャデータの取得に失敗しました:', error);
     }
+
+    // debug用
+    // setIsEmptyModalOpen(true);
   };
 
   return (
@@ -152,6 +162,7 @@ const GachaHome: React.FC = () => {
         <button onClick={handleGachaClick} className="mt-4 py-3 px-6 bg-black text-white rounded-full shadow-lg mx-auto block">ガチャを回す</button>
         {isModalOpen && <Modal data={apiResponse} onClose={() => setIsModalOpen(false)} />}
 
+        {isEmptyModalOpen && <EmptyModal />}
     </div>
   );
 };
