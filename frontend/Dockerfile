@@ -9,6 +9,8 @@ COPY package.json package-lock.json ./
 
 # 依存関係をインストール
 RUN npm install
+RUN npm install three @types/three @react-three/fiber
+RUN npm install @react-three/drei
 
 # ソースコードをコピー
 COPY . .

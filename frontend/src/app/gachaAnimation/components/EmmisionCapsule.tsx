@@ -1,3 +1,4 @@
+'use client';
 import React, { useRef, useState, useEffect } from "react";
 import { useFrame } from "@react-three/fiber";
 import { animated } from "@react-spring/three";

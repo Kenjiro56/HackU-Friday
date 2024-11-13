@@ -1,3 +1,4 @@
+'use client';
 import React, { useState, useEffect } from "react";
 import "./style.css";
 import { Canvas } from "@react-three/fiber";
@@ -9,7 +10,7 @@ import GashaponCapsule from "./components/GashaponCapsule";
 import EmmisionCapsule from "./components/EmmisionCapsule";
 import InsideCapsule from "./components/InsideCapsule";
 
-const App: React.FC = () => {
+const GachaAnimation: React.FC = () => {
   const [showEmmisionCapsule, setShowEmmisionCapsule] = useState(false);
   const [showGashaponCapsule, setShowGashaponCapsule] = useState(false);
 
@@ -65,4 +66,4 @@ const App: React.FC = () => {
   );
 };
 
-export default App;
+export default GachaAnimation;
