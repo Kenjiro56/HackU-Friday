@@ -16,23 +16,23 @@ const NewBucketModal: React.FC<ModalProps> = ({ onClose }) => {
   const handleSubmit = async () => {
     setIsSubmitting(true);
     const data = {
-      userId,
-      bucketTitle,
-      timeId,
-      loopFlag,
+      user_id: userId,
+      bucket_title: bucketTitle,
+      time_id: timeId,
+      loop_flag: loopFlag,
       description: description || '',
     };
 
     try {
-      const respionse = await fetch('http://localhost:8080/bucketls/add', {
+      const response = await fetch('http://localhost:8080/bucketls/add', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(data),
       });
-
-      if (respionse.ok) {
+      //  console.log(response);
+      if (response.ok) {
         console.log('バケットリストの追加に成功しました');
         onClose();
       }else{
