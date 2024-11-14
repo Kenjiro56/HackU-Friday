@@ -60,7 +60,7 @@ const Modal: React.FC<ModalProps> = ({ data, onClose }) => {
             </svg>
         </div>
         <div className="relative z-20 p-2 bg-white text-center text-black rounded-full w-[245px] mb-4 border-2 border-black">
-          {data.bucket_title}
+          {data[0].bucket_title}
         </div>
         <button onClick={onClose} className="relative z-20 py-2 px-4 bg-black text-white rounded-full mt-4">
           やってみる！

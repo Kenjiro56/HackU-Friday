@@ -120,7 +120,6 @@ const GachaHome: React.FC = () => {
         setIsModalOpen(true); // モーダルを表示
       }, 4000);
     } catch (error) {
-      console.error('ガチャデータの取得に失敗しました:', error);
       setIsLoading(false);
     }
 
