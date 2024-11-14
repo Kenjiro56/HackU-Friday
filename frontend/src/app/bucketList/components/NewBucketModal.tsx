@@ -2,10 +2,10 @@ import React from 'react';
 
 interface ModalProps {
   onClose: () => void;
-
+  onAddItem: (item: any) => void;
 }
 
-const NewBucketModal: React.FC<ModalProps> = ({ onClose }) => {
+const NewBucketModal: React.FC<ModalProps> = ({ onClose, onAddItem }) => {
   const [bucketTitle, setBucketTitle] = React.useState('');
   const [timeId, setTimeId] = React.useState(0);
   const [loopFlag, setLoopFlag] = React.useState(false);
@@ -34,6 +34,7 @@ const NewBucketModal: React.FC<ModalProps> = ({ onClose }) => {
       //  console.log(response);
       if (response.ok) {
         console.log('バケットリストの追加に成功しました');
+        onAddItem(data);
         onClose();
       }else{
         console.error('バケットリストの追加に失敗しました');

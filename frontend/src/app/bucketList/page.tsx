@@ -36,6 +36,10 @@ const buckerListView: React.FC = () => {
     setIsModalOpen(false);
   };
 
+  const handleAddItem = (item: any) => {
+    setBucketItems([...bucketItems, item]);
+  };
+
   const handleEditClick = (id: number) => {
     console.log('Editボタンがクリックされました', id);
   };
@@ -70,7 +74,7 @@ const buckerListView: React.FC = () => {
                   +
             </button>
             {isModalOpen && (
-              <NewBucketModal onClose={handleCloseModal} />
+              <NewBucketModal onClose={handleCloseModal} onAddItem={handleAddItem}/>
             )}
         </div>
     );
