@@ -136,7 +136,7 @@ const GachaHome: React.FC = () => {
   return (
     <div>
         {/* ガチャ部分 */}
-        <div>
+        <div className="mt-10">
           <div
             className="overflow-x-auto"
             ref={scrollContainerRef}
