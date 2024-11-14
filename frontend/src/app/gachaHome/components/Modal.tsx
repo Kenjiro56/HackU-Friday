@@ -30,7 +30,7 @@ const Modal: React.FC<ModalProps> = ({ data, onClose }) => {
               fill={
                 data.time_id === 0 ? "#FCC605" :
                 data.time_id === 1 ? "#6CB9FF" :
-                data.time_id === 2 ? "FC842E" :
+                data.time_id === 2 ? "#FC842E" :
                 "#FCC605"
               }
               stroke="#111111"

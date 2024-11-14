@@ -15,6 +15,33 @@ const GachaHome: React.FC = () => {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [visibleItem, setVisibleItem] = useState<string>('短時間');
 
+  const dummyData = [
+    {
+      id: 1,
+      user_id: 1,
+      bucket_title: 'スパイスカレーを作る',
+      time_id: 0,
+      loop_flag: false,
+      description: 'バケットリスト1の説明',
+    },
+    {
+      id: 2,
+      user_id: 1,
+      bucket_title: '和歌山県に行く',
+      time_id: 2,
+      loop_flag: false,
+      description: 'バケットリスト1の説明',
+    },
+    {
+      id: 3,
+      user_id: 1,
+      bucket_title: '個サルに参加する',
+      time_id: 1,
+      loop_flag: true,
+      description: 'バケットリスト1の説明',
+    },
+  ]
+
   const handleScroll = () => {
     if (scrollContainerRef.current) {
       const scrollLeft = scrollContainerRef.current.scrollLeft;
@@ -87,6 +114,11 @@ const GachaHome: React.FC = () => {
     } catch (error) {
       console.error('ガチャデータの取得に失敗しました:', error);
     }
+
+    // dummyDataを使ってモックデータを表示
+    // const data = dummyData[2];
+    // setApiResponse(data);  // レスポンスをstateに保存
+    // setIsModalOpen(true);  // モーダルを表示
   };
 
   return (
@@ -104,7 +136,7 @@ const GachaHome: React.FC = () => {
                   <div className="absolute top-3 left-3 bg-white text-[#FCC605] text-sm px-3 py-2 rounded-[100px] border-2 border-[#FCC605] w-[84px] h-[42px] flex justify-center items-center">
                     短時間
                   </div>
-                  <Image src="/gacha.png" alt="短時間" width={192} height={338} />
+                  <Image src="/gacha.png" alt="短時間" width={250} height={338} />
               </div>
 
               {/* 数時間 */}
@@ -112,7 +144,7 @@ const GachaHome: React.FC = () => {
                   <div className="absolute top-3 left-3 bg-white text-[#6CB9FF] text-sm px-3 py-2 rounded-[100px] border-2 border-[#6CB9FF] w-[84px] h-[42px] flex justify-center items-center ">
                     数時間
                   </div>
-                  <Image src="/gacha.png" alt="短時間" width={192} height={338} />
+                  <Image src="/gacha.png" alt="短時間" width={250} height={338} />
               </div>
 
               {/* 一日 */}
@@ -120,7 +152,7 @@ const GachaHome: React.FC = () => {
                   <div className="absolute top-3 left-3 bg-white text-[#FC842E] text-sm px-3 py-2 rounded-[100px] border-2 border-[#FC842E] w-[84px] h-[42px] flex justify-center items-center ">
                     1日
                   </div>
-                  <Image src="/gacha.png" alt="短時間" width={192} height={338} />
+                  <Image src="/gacha.png" alt="短時間" width={250} height={338} />
               </div>
             </div>
           </div>
