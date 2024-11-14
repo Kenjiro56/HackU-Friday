@@ -32,6 +32,23 @@ const buckerListView: React.FC = () => {
     setIsModalOpen(true);
   };
 
+  // 削除する用の関数
+  const handleDeleteClick = async (id: number) => {
+    try {
+      const deleteResponse = await fetch(`http://localhost:8080/bucketls/delete/${id}`, {
+        method: 'DELETE',
+      });
+
+      if (deleteResponse.ok) {
+        console.log(`アイテム ${id} の削除に成功しました`);
+      } else {
+        console.error('アイテムの削除に失敗しました');
+      }
+    } catch (error) {
+      console.error('アイテムの削除中にエラーが発生しました:', error);
+    }
+  };
+
   const handleCloseModal = () => {
     setIsModalOpen(false);
   };
@@ -76,6 +93,7 @@ const buckerListView: React.FC = () => {
             {isModalOpen && (
               <NewBucketModal onClose={handleCloseModal} onAddItem={handleAddItem}/>
             )}
+
         </div>
     );
 };
