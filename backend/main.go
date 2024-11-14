@@ -3,10 +3,10 @@ package main
 import (
 	"hacku-friday/db"
 	"hacku-friday/routes"
+	"time"
 
 	"fmt"
 	"log"
-	"time"
 
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
