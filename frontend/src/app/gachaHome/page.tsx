@@ -130,7 +130,7 @@ const GachaHome: React.FC = () => {
     setTimeout(() => {
       setIsLoading(false); // アニメーションを非表示
       setIsModalOpen(true); // モーダルを表示
-    }, 5000);
+    }, 4000);
   };
 
   return (
@@ -144,7 +144,7 @@ const GachaHome: React.FC = () => {
           >
             <div className="flex space-x-4 max-w-xs mx-auto px-4">
               {/* 短時間 */}
-              <div className="flex bg-white rounded-[30px] border-2 border-black relative w-[312px] h-[418px] justify-center items-center min-w-full mr-4">
+              <div className="flex bg-white rounded-[30px] border-2 border-black relative w-[312px] h-[418px] justify-center items-center min-w-full">
                   <div className="absolute top-3 left-3 bg-white text-[#FCC605] text-sm px-3 py-2 rounded-[100px] border-2 border-[#FCC605] w-[84px] h-[42px] flex justify-center items-center">
                     短時間
                   </div>
