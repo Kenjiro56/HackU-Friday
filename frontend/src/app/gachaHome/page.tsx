@@ -4,6 +4,8 @@ import React, { useState, useRef, useEffect } from 'react';
 import Modal from './components/Modal';
 import DescriptionModal from './components/DescriptionModal';
 import Image from 'next/image';
+import GachaAnimation from './components/GachaAnimation';
+
 
 const GachaHome: React.FC = () => {
   const [isMixMode, setIsMixMode] = useState(false);
@@ -11,6 +13,7 @@ const GachaHome: React.FC = () => {
   const [isDesModalOpen, setIsDesModalOpen] = useState(false);
   const [apiResponse, setApiResponse] = useState(null);
   const [timeCategory, setTimeCategory] = useState(0);
+  const [isLoading, setIsLoading] = useState(false);
 
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [visibleItem, setVisibleItem] = useState<string>('短時間');
@@ -79,13 +82,18 @@ const GachaHome: React.FC = () => {
     const endpoint = isMixMode
       ? `http://localhost:8080/bucketls/popSelect/${timeCategory}/all`
       : `http://localhost:8080/bucketls/popSelect/${timeCategory}/${userId}`;
+      setIsLoading(true);
     try {
       const response = await fetch(endpoint);
       const data = await response.json();
       setApiResponse(data);  // レスポンスをstateに保存
-      setIsModalOpen(true);  // モーダルを表示
+      setTimeout(() => {
+        setIsLoading(false); // アニメーションを非表示
+        setIsModalOpen(true); // モーダルを表示
+      }, 4000);
     } catch (error) {
       console.error('ガチャデータの取得に失敗しました:', error);
+      setIsLoading(false);
     }
   };
 
@@ -105,7 +113,7 @@ const GachaHome: React.FC = () => {
                   <div className="absolute top-3 left-3 bg-white text-[#FCC605] text-sm px-3 py-2 rounded-[100px] border-2 border-[#FCC605] w-[84px] h-[42px] flex justify-center items-center">
                     短時間
                   </div>
-                  <Image src="/gacha.png" alt="短時間" width={192} height={338} />
+                  <Image src="/images/gacha0.jpg" alt="短時間" width={192} height={338} />
               </div>
 
               {/* 数時間 */}
@@ -113,7 +121,7 @@ const GachaHome: React.FC = () => {
                   <div className="absolute top-3 left-3 bg-white text-[#6CB9FF] text-sm px-3 py-2 rounded-[100px] border-2 border-[#6CB9FF] w-[84px] h-[42px] flex justify-center items-center ">
                     数時間
                   </div>
-                  <Image src="/gacha.png" alt="短時間" width={192} height={338} />
+                  <Image src="/images/gacha1.png" alt="数時間" width={192} height={338} />
               </div>
 
               {/* 一日 */}
@@ -121,7 +129,7 @@ const GachaHome: React.FC = () => {
                   <div className="absolute top-3 left-3 bg-white text-[#FC842E] text-sm px-3 py-2 rounded-[100px] border-2 border-[#FC842E] w-[84px] h-[42px] flex justify-center items-center ">
                     1日
                   </div>
-                  <Image src="/gacha.png" alt="短時間" width={192} height={338} />
+                  <Image src="/images/gacha2.jpg" alt="1日" width={192} height={338} />
               </div>
             </div>
           </div>
@@ -152,6 +160,7 @@ const GachaHome: React.FC = () => {
         {/* ガチャを引くボタン */}
         <button onClick={handleGachaClick} className="mt-4 py-3 px-6 bg-black text-white rounded-full shadow-lg mx-auto block">ガチャを回す</button>
         {isModalOpen && <Modal data={apiResponse} onClose={() => setIsModalOpen(false)} />}
+        {isLoading && <GachaAnimation time_id={ timeCategory } />}
 
     </div>
   );
