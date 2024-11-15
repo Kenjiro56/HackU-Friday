@@ -33,7 +33,6 @@ const GachaAnimation: React.FC<GachaAnimationProps> = ( { time_id }) => {
 
   const playSound = () => {
     const audio = new Audio("/sounds/gachaSE.mp3");
-    console.log("playSound");
     audio.play();
   };
 
@@ -44,7 +43,10 @@ const GachaAnimation: React.FC<GachaAnimationProps> = ( { time_id }) => {
         {/* 背景のオーバーレイ */}
       <div className="fixed inset-0 bg-black opacity-50"></div>
       <div className="flex bg-white rounded-[30px] border-2 border-black relative justify-center items-center p-4">
-        <Canvas camera={{ position: [0, 0, 4] }}>
+        <Canvas camera={{ position: [0, 0, 4] }} style={{
+            width: '80vw', // ビューポート幅の80%
+            height: '60vh', // ビューポート高さの60%
+        }}>
           <ambientLight color={0xffffff} intensity={1} />
           <hemisphereLight
             color={0xffffff}
