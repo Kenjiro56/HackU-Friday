@@ -1,6 +1,5 @@
 'use client';
 import React, { useState, useEffect } from "react";
-import "./style.css";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 import GashaponMachine from "./components/GashaponMachine";
