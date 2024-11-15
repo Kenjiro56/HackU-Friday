@@ -8,7 +8,7 @@ interface ModalProps {
 
 const Modal: React.FC<ModalProps> = ({ data, onClose }) => {
   const playSound = () => {
-    const audio = new Audio("/sounds/openSound1.mp3");
+    const audio = new Audio("/sounds/openSound2.mp3");
     audio.play();
   };
   return (
