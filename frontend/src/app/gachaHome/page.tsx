@@ -120,17 +120,10 @@ const GachaHome: React.FC = () => {
         setIsModalOpen(true); // モーダルを表示
       }, 4000);
     } catch (error) {
-      console.error('ガチャデータの取得に失敗しました:', error);
       setIsLoading(false);
     }
 
-    // dummyDataを使ってモックデータを表示
-    // const data = dummyData[2];
-    // setApiResponse(data);  // レスポンスをstateに保存
-    // setTimeout(() => {
-    //   setIsLoading(false); // アニメーションを非表示
-    //   setIsModalOpen(true); // モーダルを表示
-    // }, 4000);
+
   };
 
   return (
