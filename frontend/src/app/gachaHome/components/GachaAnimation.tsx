@@ -2,12 +2,12 @@
 import React, { useState, useEffect } from "react";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
-import GashaponMachine from "./components/GashaponMachine";
-import Handle from "./components/Handle";
-import OutletLid from "./components/OutletLid";
-import GashaponCapsule from "./components/GashaponCapsule";
-import EmmisionCapsule from "./components/EmmisionCapsule";
-import InsideCapsule from "./components/InsideCapsule";
+import GashaponMachine from "./GashaponMachine";
+import Handle from "./Handle";
+import OutletLid from "./OutletLid";
+import GashaponCapsule from "./GashaponCapsule";
+import EmmisionCapsule from "./EmmisionCapsule";
+import InsideCapsule from "./InsideCapsule";
 
 const GachaAnimation: React.FC = () => {
   const [showEmmisionCapsule, setShowEmmisionCapsule] = useState(false);
@@ -26,7 +26,7 @@ const GachaAnimation: React.FC = () => {
   }, []);
 
   return (
-    <div id="canvas-container">
+    <div>
       <Canvas camera={{ position: [0, 0, 4] }}>
         <ambientLight color={0xffffff} intensity={1} />
         <hemisphereLight

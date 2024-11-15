@@ -4,6 +4,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import Modal from './components/Modal';
 import DescriptionModal from './components/DescriptionModal';
 import Image from 'next/image';
+import GachaAnimation from './components/GachaAnimation';
 
 const GachaHome: React.FC = () => {
   const [isMixMode, setIsMixMode] = useState(false);
@@ -14,6 +15,7 @@ const GachaHome: React.FC = () => {
 
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [visibleItem, setVisibleItem] = useState<string>('短時間');
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleScroll = () => {
     if (scrollContainerRef.current) {
@@ -59,6 +61,10 @@ const GachaHome: React.FC = () => {
         }
       };
 
+      setTimeout(() => {
+        setIsLoading(true);
+      }, 4000);
+
       // bodyタグの背景色を設定
       document.body.style.backgroundColor = getBackgroundColor();
 
@@ -79,11 +85,16 @@ const GachaHome: React.FC = () => {
     const endpoint = isMixMode
       ? `http://localhost:8080/bucketls/popSelect/${timeCategory}/all`
       : `http://localhost:8080/bucketls/popSelect/${timeCategory}/${userId}`;
+      setIsLoading(true);
     try {
       const response = await fetch(endpoint);
       const data = await response.json();
       setApiResponse(data);  // レスポンスをstateに保存
-      setIsModalOpen(true);  // モーダルを表示
+      // setIsModalOpen(true);  // モーダルを表示
+      setTimeout(() => {
+        setIsLoading(false); // アニメーションを非表示
+        setIsModalOpen(true); // モーダルを表示
+      }, 4000);
     } catch (error) {
       console.error('ガチャデータの取得に失敗しました:', error);
     }
@@ -151,7 +162,7 @@ const GachaHome: React.FC = () => {
         {/* ガチャを引くボタン */}
         <button onClick={handleGachaClick} className="mt-4 py-3 px-6 bg-black text-white rounded-full shadow-lg mx-auto block">ガチャを回す</button>
         {isModalOpen && <Modal data={apiResponse} onClose={() => setIsModalOpen(false)} />}
-
+        {isLoading && <GachaAnimation />}
     </div>
   );
 };
