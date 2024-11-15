@@ -74,11 +74,11 @@ const GachaAnimation: React.FC<GachaAnimationProps> = ( { time_id }) => {
           </group>
 
           {/* 各コンポーネントの表示を条件付きレンダリング */}
-          <GashaponMachine />
+          <GashaponMachine time_id= {time_id} />
           <Handle />
           <OutletLid />
-          {showEmmisionCapsule && <EmmisionCapsule />}
-          {showGashaponCapsule && <GashaponCapsule />}
+          {showEmmisionCapsule && <EmmisionCapsule time_id={ time_id } />}
+          {showGashaponCapsule && <GashaponCapsule time_id={ time_id }  />}
         </Canvas>
 
       </div>

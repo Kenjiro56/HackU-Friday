@@ -189,7 +189,6 @@ const GachaHome: React.FC = () => {
         <button onClick={handleGachaClick} className="mt-4 py-3 px-6 bg-black text-white rounded-full shadow-lg mx-auto block">ガチャを回す</button>
         {isModalOpen && <Modal data={apiResponse} onClose={() => setIsModalOpen(false)} />}
         {isLoading && <GachaAnimation time_id={ timeCategory } />}
-        {/* <GachaAnimation time_id={ timeCategory } /> */}
     </div>
   );
 };

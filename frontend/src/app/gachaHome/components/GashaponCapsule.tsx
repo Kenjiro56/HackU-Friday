@@ -2,8 +2,11 @@ import React, { useRef, useState, useEffect } from "react";
 import { useFrame } from "@react-three/fiber";
 import { animated } from "@react-spring/three";
 import * as THREE from "three";
+interface GashaponCapsuleProps {
+  time_id: number;
+}
 
-export default function GashaponCapsule() {
+export default function GashaponCapsule({time_id}: GashaponCapsuleProps) {
   const topCapsuleRef = useRef<THREE.Group>(null); // 上部カプセル用のRef
   const bottomCapsuleRef = useRef<THREE.Group>(null); // 下部カプセル用のRef
 
@@ -19,6 +22,21 @@ export default function GashaponCapsule() {
   const [isStarted, setIsStarted] = useState(false); // 動きが始まったかどうか
 
   const waitTime = 100; // 待機時間（ミリ秒）
+
+  const pickColor = () => {
+    switch (time_id) {
+      case 0:
+        console.log("time_id: 0");
+        return "#FCC605";
+      case 1:
+        return "#6CB9FF";
+      case 2:
+        return "#FC842E";
+      default:
+        return "#FC842E";
+    }
+  };
+
 
   // 待機時間後に動きを開始
   useEffect(() => {
@@ -62,6 +80,7 @@ export default function GashaponCapsule() {
 
   return (
     <group position={[0, -0.5, 1]}>
+      {console.log(time_id)}
       {/* 上部カプセル */}
       <group ref={topCapsuleRef}>
         <animated.mesh
@@ -69,7 +88,7 @@ export default function GashaponCapsule() {
           rotation={[0, 0, Math.PI / 2]}
         >
           <sphereGeometry args={[0.3, 32, 32, Math.PI / 2, Math.PI]} />
-          <meshStandardMaterial color="#FCC605" />
+          <meshStandardMaterial color={pickColor()} />
         </animated.mesh>
       </group>
 

@@ -3,8 +3,11 @@ import React, { useRef, useState, useEffect } from "react";
 import { useFrame } from "@react-three/fiber";
 import { animated } from "@react-spring/three";
 import * as THREE from "three";
+interface EmmisionCapsuleProps {
+  time_id: number;
+}
 
-export default function EmmisionCapsule() {
+export default function EmmisionCapsule({time_id}: EmmisionCapsuleProps) {
   const topCapsuleRef = useRef<THREE.Group>(null); // 上部カプセル用のRef
   const bottomCapsuleRef = useRef<THREE.Group>(null); // 下部カプセル用のRef
 
@@ -17,6 +20,20 @@ export default function EmmisionCapsule() {
   const [isStarted, setIsStarted] = useState(false); // 動きが始まったかどうか
 
   const waitTime = 500; // 待機時間（ミリ秒）
+
+  const pickColor = () => {
+    switch (time_id) {
+      case 0:
+        return "#FCC605";
+      case 1:
+        return "#6CB9FF";
+      case 2:
+        return "#FC842E";
+      default:
+        return "#FC842E";
+    }
+  };
+
 
   // 待機時間後に動きを開始
   useEffect(() => {
@@ -49,7 +66,8 @@ export default function EmmisionCapsule() {
           rotation={[0, 0, Math.PI / 2]}
         >
           <sphereGeometry args={[0.3, 32, 32, Math.PI / 2, Math.PI]} />
-          <meshStandardMaterial color="#FCC605" />
+          {/* <meshStandardMaterial color="#FCC605" /> */}
+          <meshStandardMaterial color={pickColor()} />
         </animated.mesh>
       </group>
 

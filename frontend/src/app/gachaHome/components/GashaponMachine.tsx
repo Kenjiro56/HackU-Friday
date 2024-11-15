@@ -1,6 +1,22 @@
 import { RoundedBox } from "@react-three/drei";
+interface GashaponMachineProps {
+  time_id: number;
+}
 
-export default function GashaponMachine() {
+export default function GashaponMachine({time_id}): GashaponMachineProps {
+  const pickColor = () => {
+    switch (time_id) {
+      case 0:
+        return "#FCC605";
+      case 1:
+        return "#6CB9FF";
+      case 2:
+        return "#FC954C";
+      default:
+        return "#FC954c";
+    }
+  };
+
   return (
     <group>
       {/* 上部の透明な球体 */}
@@ -12,7 +28,7 @@ export default function GashaponMachine() {
       {/* 下部の本体 */}
       <mesh position={[0, -0.5, 0]}>
         <cylinderGeometry args={[0.55, 1, 1.4, 100]} />
-        <meshStandardMaterial color="#6CB9FF" />
+        <meshStandardMaterial color={pickColor()} />
       </mesh>
 
       {/* 取っ手の土台 */}
