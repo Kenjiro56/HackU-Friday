@@ -7,8 +7,13 @@ interface ModalProps {
 }
 
 const Modal: React.FC<ModalProps> = ({ data, onClose }) => {
+  const playSound = () => {
+    const audio = new Audio("/sounds/openSound1.mp3");
+    audio.play();
+  };
   return (
       <div className="fixed inset-0 flex items-center justify-center z-50">
+      {playSound()}
       {/* 背景のオーバーレイ */}
       <div className="fixed inset-0 bg-black opacity-50" onClick={onClose}></div>
 
