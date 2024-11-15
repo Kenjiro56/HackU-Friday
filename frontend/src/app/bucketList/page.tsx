@@ -22,10 +22,8 @@ const buckerListView: React.FC = () => {
       }finally{
         setLoading(false);
       }
-
     };
     fetchBucketItems();
-
   }, []);
   const handleAddClick = () => {
     // 追加ボタンがクリックされたときの処理をここに書きます
@@ -90,6 +88,7 @@ const buckerListView: React.FC = () => {
                 >
                   +
             </button>
+            {/* <button onClick={handleDeleteClick(18)}>削除する</button> */}
             {isModalOpen && (
               <NewBucketModal onClose={handleCloseModal} onAddItem={handleAddItem}/>
             )}
