@@ -113,7 +113,7 @@ const GachaHome: React.FC = () => {
                   <div className="absolute top-3 left-3 bg-white text-[#FCC605] text-sm px-3 py-2 rounded-[100px] border-2 border-[#FCC605] w-[84px] h-[42px] flex justify-center items-center">
                     短時間
                   </div>
-                  <Image src="/images/gacha0.jpg" alt="短時間" width={192} height={338} />
+                  <Image src="/images/gacha0.jpg" alt="短時間" width={180} height={338} />
               </div>
 
               {/* 数時間 */}
@@ -121,7 +121,7 @@ const GachaHome: React.FC = () => {
                   <div className="absolute top-3 left-3 bg-white text-[#6CB9FF] text-sm px-3 py-2 rounded-[100px] border-2 border-[#6CB9FF] w-[84px] h-[42px] flex justify-center items-center ">
                     数時間
                   </div>
-                  <Image src="/images/gacha1.png" alt="数時間" width={192} height={338} />
+                  <Image src="/images/gacha1.png" alt="数時間" width={210} height={338} />
               </div>
 
               {/* 一日 */}
@@ -129,7 +129,7 @@ const GachaHome: React.FC = () => {
                   <div className="absolute top-3 left-3 bg-white text-[#FC842E] text-sm px-3 py-2 rounded-[100px] border-2 border-[#FC842E] w-[84px] h-[42px] flex justify-center items-center ">
                     1日
                   </div>
-                  <Image src="/images/gacha2.jpg" alt="1日" width={192} height={338} />
+                  <Image src="/images/gacha2.jpg" alt="1日" width={180} height={338} />
               </div>
             </div>
           </div>
