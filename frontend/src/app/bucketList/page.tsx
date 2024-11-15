@@ -61,7 +61,7 @@ const buckerListView: React.FC = () => {
     console.log('Editボタンがクリックされました', id);
   };
     return (
-        <div>
+        <div className="min-h-screen mt-[300px]">
           {loading ? (
             <p>読み込み中...</p>
           ):(
