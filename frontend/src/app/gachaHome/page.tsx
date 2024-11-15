@@ -92,8 +92,8 @@ const GachaHome: React.FC = () => {
   return (
     <div>
         {/* ガチャ部分 */}
-        <div>
-        {isMixMode && <Image src={"/images/mixedBg.png"} width={390} height={840} className="fixed top-0 left-1/2 transform -translate-x-1/2 opacity" />}
+        <div className="mt-10">
+        {isMixMode && <Image src={"/images/mixedBg.png"} alt="mixedBG" width={390} height={840} className="fixed top-0 left-1/2 transform -translate-x-1/2 opacity" />}
           <div
             className="overflow-x-auto"
             ref={scrollContainerRef}
