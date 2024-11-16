@@ -136,7 +136,7 @@ const GachaHome: React.FC = () => {
         </div>
         {/* ごちゃ混ぜモード切り替え部 */}
         <div className="flex items-center space-x-2 justify-center">
-          <div className="flex items-center space-x-2 mt-4 justify-center py-3 z-50">
+          <div className="flex items-center space-x-2 mt-4 justify-center py-3 z-50 bg-[#f8f7f1] px-[16px] py-[10px] rounded-[10px]">
               <button
                 className="flex items-center justify-center w-6 h-6 rounded-full bg-white text-xs text-black mr-2 border border-black"
                 aria-label="ごちゃ混ぜモードの説明"
