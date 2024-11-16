@@ -17,7 +17,7 @@ const Header: React.FC = () => {
   };
 
   return (
-    <header className="w-full max-w-xs mx-auto flex flex-col items-center p-4 fixed top-0 left-0 right-0 z-10">
+    <header className="max-w-xs mx-auto flex flex-col items-center fixed top-0 left-0 right-0 z-10">
       <Logo width={100} height={50} />
       <div className="flex w-full rounded-full overflow-hidden border-2 border-black">
         <button onClick={navigateToHome} className={`flex-1 py-2 ${
