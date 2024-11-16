@@ -25,16 +25,10 @@ const GachaAnimation: React.FC<GachaAnimationProps> = ( { time_id }) => {
       setTimeout(() => setShowGashaponCapsule(true), 2500), // 2500ms後にカプセルアニメーションを表示
 
     ];
-    // { playSound()}
 
     // クリーンアップ
     return () => timers.forEach(clearTimeout);
   }, []);
-
-  const playSound = () => {
-    const audio = new Audio("/sounds/gachaSE.mp3");
-    audio.play();
-  };
 
 
   return (
