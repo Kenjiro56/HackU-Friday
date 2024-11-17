@@ -6,6 +6,7 @@ import DescriptionModal from './components/DescriptionModal';
 import Image from 'next/image';
 import GachaAnimation from './components/GachaAnimation';
 import GachaThumbnail from './components/GachaThumbnail';
+import decideColorCode  from '../../utils/decideColorCode';
 
 
 const GachaHome: React.FC = () => {
@@ -30,47 +31,29 @@ const GachaHome: React.FC = () => {
       // インデックスに応じて表示されるアイテムを設定
       switch (index) {
         case 0:
-          setVisibleItem('短時間');
           setTimeCategory(0);
           break;
         case 1:
-          setVisibleItem('数時間');
           setTimeCategory(1);
           break;
         case 2:
-          setVisibleItem('1日');
           setTimeCategory(2);
           break;
         default:
-          setVisibleItem('短時間');
           setTimeCategory(0);
       }
     }
   };
 
     useEffect(() => {
-      // 表示されているアイテムに応じて背景色を変更
-      const getBackgroundColor = () => {
-        switch (visibleItem) {
-          case '短時間':
-            return '#FCC605';
-          case '数時間':
-            return '#6CB9FF';
-          case '1日':
-            return '#FC842E';
-          default:
-            return '#FCC605';
-        }
-      };
-
       // bodyタグの背景色を設定
-      document.body.style.backgroundColor = getBackgroundColor();
+      document.body.style.backgroundColor = decideColorCode(timeCategory);
 
       // コンポーネントがアンマウントされるときに背景色をリセット
       return () => {
         document.body.style.backgroundColor = '';
       };
-    }, [visibleItem]);
+    },);
 
 
   // トグルの切り替え
