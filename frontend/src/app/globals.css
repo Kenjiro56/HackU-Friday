@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
+/* :root {
   --background: #ffffff;
   --foreground: #171717;
 }
@@ -34,4 +34,27 @@ body {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+} */
+
+/* src/styles/globals.css */
+html, body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Noto Sans JP', sans-serif;
+  font-weight: 700;
+  background-color: #f8f7f1; /* 背景色をページ全体に適用 */
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+#root, #__next {
+  width: 100%;
+  max-width: 400px; /* 最大幅をスマホサイズに制限 */
+  margin: auto;
 }

@@ -1,0 +1,27 @@
+[
+  {
+    "bucket_title": "美術館の企画展に行く",
+    "loop_flag": false,
+    "time_id": 1
+  },
+  {
+    "bucket_title": "積読書を一冊消化する",
+    "loop_flag": false,
+    "time_id": 1
+  },
+  {
+    "bucket_title": "日帰り旅行に行く",
+    "loop_flag": false,
+    "time_id": 2
+  },
+  {
+    "bucket_title": "5km走る",
+    "loop_flag": true,
+    "time_id": 0
+  },
+  {
+    "bucket_title": "サウナに行く",
+    "loop_flag": true,
+    "time_id": 1
+  }
+]

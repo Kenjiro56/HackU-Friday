@@ -8,7 +8,7 @@ type Bucket struct {
 	BucketTitle string    `gorm:"size:255;not null" json:"bucket_title"`
 	TimeID      uint      `gorm:"not null" json:"time_id"`
 	LoopFlag    bool      `gorm:"not null;default:false" json:"loop_flag"` //true = 繰り返す
-	Description string    `gorm:"size:255;not null" json:"description"`
+	Description string    `gorm:"size:255;not null" json:"description"`    //bucketのメモはここ
 	CreatedAt   time.Time `json:"created_at"`
 	UpdatedAt   time.Time `json:"updated_at"`
 }

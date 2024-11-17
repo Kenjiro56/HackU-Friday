@@ -10,4 +10,5 @@ COPY . .
 
 RUN go mod tidy
 
-CMD ["air"]
+
+CMD ["air", "./main"]
