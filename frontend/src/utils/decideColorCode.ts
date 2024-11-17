@@ -1,5 +1,5 @@
-const decideColorCode = (value: number) => {
-  switch (value) {
+const decideColorCode = (timeCategory: number) => {
+  switch (timeCategory) {
     case 0:
       return '#fcc605';
     case 1:
