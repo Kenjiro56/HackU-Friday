@@ -10,3 +10,5 @@ const decideLabel = (timeCategory: number) => {
       return '短時間';
   }
 }
+
+export default decideLabel;
