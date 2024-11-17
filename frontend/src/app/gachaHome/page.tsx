@@ -7,6 +7,7 @@ import Image from 'next/image';
 import GachaAnimation from './components/GachaAnimation';
 import GachaThumbnail from './components/GachaThumbnail';
 import timeCategoryAttribute from '../../constants/timeCategoryAttribute';
+import GochaMazeDesc from './components/GochaMazeDesc';
 
 
 const GachaHome: React.FC = () => {

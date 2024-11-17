@@ -1,6 +1,5 @@
 import React from 'react';
 import Image from 'next/image';
-import decideLabel from '../../../utils/decideLabel';
 import timeCategoryAttribute from '../../../constants/timeCategoryAttribute';
 
 interface Props {
