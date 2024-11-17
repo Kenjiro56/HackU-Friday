@@ -27,21 +27,7 @@ const GachaHome: React.FC = () => {
 
       // 位置に基づいて表示されているアイテムを特定
       const index = Math.round(scrollLeft / containerWidth);
-
-      // インデックスに応じて表示されるアイテムを設定
-      switch (index) {
-        case 0:
-          setTimeCategory(0);
-          break;
-        case 1:
-          setTimeCategory(1);
-          break;
-        case 2:
-          setTimeCategory(2);
-          break;
-        default:
-          setTimeCategory(0);
-      }
+      setTimeCategory(index);
     }
   };
 
