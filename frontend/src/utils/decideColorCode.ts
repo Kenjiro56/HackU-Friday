@@ -10,3 +10,5 @@ const decideColorCode = (value: number) => {
       return '#fcc605';
   }
 }
+
+export default decideColorCode;
