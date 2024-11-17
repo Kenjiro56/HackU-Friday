@@ -6,7 +6,7 @@ import DescriptionModal from './components/DescriptionModal';
 import Image from 'next/image';
 import GachaAnimation from './components/GachaAnimation';
 import GachaThumbnail from './components/GachaThumbnail';
-import decideColorCode  from '../../utils/decideColorCode';
+import timeCategoryAttribute from '../../constants/timeCategoryAttribute';
 
 
 const GachaHome: React.FC = () => {
@@ -18,7 +18,6 @@ const GachaHome: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const scrollContainerRef = useRef<HTMLDivElement>(null);
-  const [visibleItem, setVisibleItem] = useState<string>('短時間');
 
   const handleScroll = () => {
     if (scrollContainerRef.current) {
@@ -33,7 +32,7 @@ const GachaHome: React.FC = () => {
 
     useEffect(() => {
       // bodyタグの背景色を設定
-      document.body.style.backgroundColor = decideColorCode(timeCategory);
+      document.body.style.backgroundColor = timeCategoryAttribute[timeCategory].color;
 
       // コンポーネントがアンマウントされるときに背景色をリセット
       return () => {
@@ -71,16 +70,17 @@ const GachaHome: React.FC = () => {
     <div>
         {/* ガチャ部分 */}
         <div className="mt-10 flex">
-        {isMixMode && <Image src={"/images/mixedBg.png"} alt="mixedBG" width={390} height={839} className="fixed top-0 left-1/2 transform -translate-x-1/2 opacit z-1" />}
+          {isMixMode && <Image src={"/images/mixedBg.png"} alt="mixedBG" width={390} height={839} className="fixed top-0 left-1/2 transform -translate-x-1/2 opacit z-1" />}
           <div
             className="overflow-x-auto flex"
             ref={scrollContainerRef}
             onScroll={handleScroll}
           >
+            {/* ここfor文で回すようにしたい */}
             <div className="flex space-x-4 max-w-xs mx-auto px-3 z-50">
-              <GachaThumbnail label={ "短時間" } srcPath= { "/images/gacha0.jpg" } imgWidth={180} imgHeight={ 338 }/>
-              <GachaThumbnail label={ "数時間" } srcPath= { "/images/gacha1.png" } imgWidth={210} imgHeight={ 338 }/>
-              <GachaThumbnail label={ "1日" } srcPath= { "/images/gacha2.jpg" } imgWidth={180} imgHeight={ 338 }/>
+              <GachaThumbnail timeCategory={ timeCategory } srcPath= { "/images/gacha0.jpg" } imgWidth={180} imgHeight={ 338 } />
+              <GachaThumbnail timeCategory={ timeCategory } srcPath= { "/images/gacha1.png" } imgWidth={210} imgHeight={ 338 }/>
+              <GachaThumbnail timeCategory={ timeCategory } srcPath= { "/images/gacha2.jpg" } imgWidth={180} imgHeight={ 338 }/>
             </div>
           </div>
         </div>
