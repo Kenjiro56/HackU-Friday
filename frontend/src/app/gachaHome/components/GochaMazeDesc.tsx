@@ -6,7 +6,7 @@ interface GochaMazeDescProps {
   onBtnClick: () => void;
 }
 
-const GochaMazeDesc: React.FC<GochaMazeDescProps> = ( props ) => {
+const GochaMazeDescContainer: React.FC<GochaMazeDescProps> = ( props ) => {
 return (
     <div className="flex items-center space-x-2 justify-center">
       <div className="flex items-center space-x-2 mt-4 justify-center py-3 z-50 bg-[#f8f7f1] px-[16px] py-[10px] rounded-[10px]">
@@ -31,4 +31,4 @@ return (
     </div>
   );
 };
-export default GochaMazeDesc;
+export default GochaMazeDescContainer;

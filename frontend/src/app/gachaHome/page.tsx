@@ -7,7 +7,7 @@ import Image from 'next/image';
 import GachaAnimation from './components/GachaAnimation';
 import GachaThumbnail from './components/GachaThumbnail';
 import timeCategoryAttribute from '../../constants/timeCategoryAttribute';
-import GochaMazeDesc from './components/GochaMazeDesc';
+import GochaMazeDescContainer from './components/GochaMazeDesc';
 
 
 const GachaHome: React.FC = () => {
@@ -109,7 +109,7 @@ const GachaHome: React.FC = () => {
             </label>
           </div>
         </div> */}
-        <GochaMazeDesc checked={ isMixMode } onChecked={ handleToggle } onBtnClick={ () => setIsDesModalOpen(true) }/>
+        <GochaMazeDescContainer checked={ isMixMode } onChecked={ handleToggle } onBtnClick={ () => setIsDesModalOpen(true) }/>
         {isDesModalOpen && <DescriptionModal onClose={() => setIsDesModalOpen(false)} />}
 
         {/* ガチャを引くボタン */}
