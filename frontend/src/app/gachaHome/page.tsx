@@ -33,10 +33,8 @@ const GachaHome: React.FC = () => {
   };
 
     useEffect(() => {
-      // bodyタグの背景色を設定
       document.body.style.backgroundColor = timeCategoryAttribute[timeCategory].color;
 
-      // コンポーネントがアンマウントされるときに背景色をリセット
       return () => {
         document.body.style.backgroundColor = '';
       };
@@ -89,7 +87,6 @@ const GachaHome: React.FC = () => {
 
         {/* ごちゃ混ぜモードの説明 */}
         <GochaMazeDescContainer checked={ isMixMode } onChecked={ handleToggle } onBtnClick={ () => setIsDesModalOpen(true) }/>
-
 
         {/* ガチャを引くボタン */}
         <div className="flex">
