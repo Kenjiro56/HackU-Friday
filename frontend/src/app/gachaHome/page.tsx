@@ -4,7 +4,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import Modal from './components/Modal';
 import DescriptionModal from './components/DescriptionModal';
 import Image from 'next/image';
-import GachaAnimation from './components/GachaAnimation';
+import GachaAnimation from '../../utils/GachaAnimation';
 import GachaThumbnail from './components/GachaThumbnail';
 import timeCategoryAttribute from '../../constants/timeCategoryAttribute';
 import GochaMazeDescContainer from './components/GochaMazeDesc';
