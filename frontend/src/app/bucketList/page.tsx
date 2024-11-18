@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import NewBucketModal from './components/NewBucketModal';
 import Card from './components/Card';
+import AddButton from './components/AddButton';
 
 
 const buckerListView: React.FC = () => {
@@ -69,25 +70,8 @@ const buckerListView: React.FC = () => {
               ))}
             </ul>
           )}
+          <AddButton onClick={handleAddClick}/>
 
-          <button
-                  onClick={handleAddClick}
-                  style={{
-                    position: 'fixed',
-                    right: '20px',
-                    bottom: '20px',
-                    width: '50px',
-                    height: '50px',
-                    borderRadius: '50%',
-                    backgroundColor: 'black',
-                    color: 'white',
-                    fontSize: '24px',
-                    border: 'none',
-                    cursor: 'pointer',
-                  }}
-                >
-                  +
-            </button>
             {/* <button onClick={handleDeleteClick(18)}>削除する</button> */}
             {isModalOpen && (
               <NewBucketModal onClose={handleCloseModal} onAddItem={handleAddItem}/>
