@@ -71,11 +71,11 @@ const buckerListView: React.FC = () => {
             </ul>
           )}
           <AddButton onClick={handleAddClick}/>
+          {isModalOpen &&
+            <NewBucketModal onClose={handleCloseModal} onAddItem={handleAddItem}/>
+          }
+          {/* <button onClick={handleDeleteClick(18)}>削除する</button> */}
 
-            {/* <button onClick={handleDeleteClick(18)}>削除する</button> */}
-            {isModalOpen && (
-              <NewBucketModal onClose={handleCloseModal} onAddItem={handleAddItem}/>
-            )}
 
         </div>
     );
